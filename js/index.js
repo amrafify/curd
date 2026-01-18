@@ -1,5 +1,5 @@
 var productsList;
-if (localStorage.getItem("products") !== '') {
+if (localStorage.getItem("products") !== null) {
     productsList = JSON.parse(localStorage.getItem("products"))
     displayProducts()
 }
@@ -166,4 +166,5 @@ searchProductcateBtn.addEventListener('click', function () {
 
     }
     bodyTable.innerHTML = cartoona;
+
 })
