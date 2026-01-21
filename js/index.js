@@ -108,7 +108,7 @@ btnUpdate.addEventListener('click', function () {
 })
 
 function deleteProduct(i) {
-    var userConfirmed = confirm("هل أنت متأكد من رغبتك في مسح هذا المنتج؟");
+    var userConfirmed = confirm(`هل أنت متأكد من رغبتك في مسح ${productsList[i].nameProducts}؟`);
     if (userConfirmed) {
         productsList.splice(i, 1);
         displayProducts()
@@ -184,3 +184,4 @@ searchProductcateBtn.addEventListener('click', function () {
     }
     bodyTable.innerHTML = cartoona;
 })
+
