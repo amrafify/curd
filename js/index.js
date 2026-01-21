@@ -48,7 +48,6 @@ function addProduct() {
 btnCreate.addEventListener("click", addProduct);
 function displayProducts() {
     var cartoona = ``
-
     for (var i = 0; i < productsList.length; i++) {
         var totalPrice = (Number(productsList[i].priceProducts) + Number(productsList[i].taxesProducts) + Number(productsList[i].adsProducts) - Number(productsList[i].discountProducts))
         cartoona += ` <tr>
@@ -82,6 +81,31 @@ function setFOrmForUpdate(i) {
     btnUpdate.classList.remove('d-none')
     document.querySelector(`.btnde${i}`).toggleAttribute('disabled', true)
     document.getElementById('deletAllBtn').toggleAttribute('disabled', true)
+    diplayProductUp(i)
+
+}
+function diplayProductUp(i) {
+    var cartoona = ''
+
+    var totalPrice = (Number(productsList[i].priceProducts) + Number(productsList[i].taxesProducts) + Number(productsList[i].adsProducts) - Number(productsList[i].discountProducts))
+
+    cartoona += ` <tr>
+                    <th scope="row">${i + 1}</th>
+                    <td>${productsList[i].nameProducts}</td>
+                    <td>${productsList[i].priceProducts}</td>
+                    <td>${productsList[i].taxesProducts}</td>
+                    <td>${productsList[i].adsProducts}</td>
+                    <td>${productsList[i].discountProducts}</td>
+                    <td>${totalPrice}</td>
+                    <td>${productsList[i].countPtoducts}</td>
+                    <td>${(Number(productsList[i].countPtoducts) * totalPrice)}</td>
+                    <td>${productsList[i].categoryProducts}</td>
+                    <td><button onclick="setFOrmForUpdate(${i})" class="btn btn-warning btn-sm">Update</button></td>
+                    <td><button  onclick="deleteProduct(${i})" class="btn btn-danger btn-sm btnde${i}">Delete</button></td>
+                </tr>`
+
+
+    bodyTable.innerHTML = cartoona;
 }
 
 btnUpdate.addEventListener('click', function () {
@@ -116,6 +140,7 @@ function deleteProduct(i) {
         clrForm()
         btnCreate.classList.remove('d-none')
         btnUpdate.classList.add('d-none')
+        document.getElementById('deletAllBtn').toggleAttribute('disabled', false)
     }
 
 
@@ -151,7 +176,7 @@ searchProductNameBtn.addEventListener('click', function () {
                     <td>${(Number(productsList[i].countPtoducts) * totalPrice)}</td>
                     <td>${productsList[i].categoryProducts}</td>
                     <td><button onclick="setFOrmForUpdate(${i})" class="btn btn-warning btn-sm">Update</button></td>
-                    <td><button onclick="deleteProduct(${i})" class="btn btn-danger btn-sm btnde">Delete</button></td>
+                    <td><button  onclick="deleteProduct(${i})" class="btn btn-danger btn-sm btnde${i}">Delete</button></td>
                 </tr>`
         }
 
@@ -177,11 +202,10 @@ searchProductcateBtn.addEventListener('click', function () {
                     <td>${(Number(productsList[i].countPtoducts) * totalPrice)}</td>
                     <td>${productsList[i].categoryProducts}</td>
                     <td><button onclick="setFOrmForUpdate(${i})" class="btn btn-warning btn-sm">Update</button></td>
-                    <td><button onclick="deleteProduct(${i})" class="btn btn-danger btn-sm btnde">Delete</button></td>
+                    <td><button  onclick="deleteProduct(${i})" class="btn btn-danger btn-sm btnde${i}">Delete</button></td>
                 </tr>`
         }
 
     }
     bodyTable.innerHTML = cartoona;
 })
-
